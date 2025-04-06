@@ -1,0 +1,40 @@
+{
+  "name": "baax",
+  "version": "1.0.3",
+  "description": "A CLI tool to generate backend boilerplate projects easily.",
+  "main": "index.js",
+  "bin": {
+    "create-baax": "./index.js"
+  },
+  "repository": {
+ 	 "type": "git",
+ 	 "url": "https://github.com/neelamnagarajgithub/baax"
+  },
+  "bugs": {
+  	"url": "https://github.com/neelamnagarajgithub/baax/issues"
+  },
+  "homepage": "https://baax.nagarajneelam.me",
+
+  "keywords": [
+    "cli",
+    "backend",
+    "nodejs",
+    "generator",
+    "express",
+    "nestjs",
+    "fastify",
+    "mongodb",
+    "postgresql"
+  ],
+  "author": "NagarajNeelam",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "figlet": "^1.5.2",
+    "gradient-string": "^2.0.1",
+    "inquirer": "^9.1.4",
+    "ora": "^6.1.2"
+  }
+}
+
