@@ -8,13 +8,13 @@ const HeroSection: React.FC = () => {
       <div className="grid gap-8 md:grid-cols-2 items-center">
         <div>
           <div className="mb-6 inline-block rounded-full bg-baax-100 px-3 py-1 text-sm text-baax-800 dark:bg-baax-800/20 dark:text-baax-200">
-            v1.0.0 - Beta Release
+            v1.0.2 - Beta Release
           </div>
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight lg:text-5xl">
-            The Next Generation Blueprint Builder
+            The Next Generation Backend Blueprint Builder
           </h1>
           <p className="mb-8 text-xl text-muted-foreground">
-            A powerful CLI tool that provides boilerplate code like Vite. Select frameworks, databases,
+            A powerful CLI tool that provides boilerplate Code for Backends . Select frameworks, databases,
             and tools to generate your project instantly.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">

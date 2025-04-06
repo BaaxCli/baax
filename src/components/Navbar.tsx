@@ -18,9 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuToggle }) => {
             <Menu className="h-5 w-5" />
           </Button>
           <Link to="/" className="flex items-center gap-2">
-            <div className="relative h-7 w-7 rounded-full bg-gradient-to-br from-baax-500 to-baax-700">
-              <div className="absolute inset-0 flex items-center justify-center text-white font-bold">B</div>
-            </div>
+          <img src={`/logo.png`} alt="Logo" className="h-8 w-8 object-cover rounded-full" />
             <span className="hidden sm:inline-block font-bold text-xl">baax</span>
           </Link>
         </div>
@@ -43,7 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuToggle }) => {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <Button variant="outline" size="icon" asChild>
-            <a href="https://github.com/yourusername/baax" target="_blank" rel="noreferrer">
+            <a href="https://github.com/neelamnagarajgithub/baax" target="_blank" rel="noreferrer">
               <Github className="h-4 w-4" />
             </a>
           </Button>
