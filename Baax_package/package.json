@@ -1,6 +1,6 @@
 {
   "name": "baax",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A CLI tool to generate backend boilerplate projects easily.",
   "main": "index.js",
   "bin": {

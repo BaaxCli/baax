@@ -19,7 +19,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuToggle }) => {
           </Button>
           <Link to="/" className="flex items-center gap-2">
           <img src={`/logo.png`} alt="Logo" className="h-8 w-8 object-cover rounded-full" />
-            <span className="hidden sm:inline-block font-bold text-xl">baax</span>
+            <span className="hidden sm:inline-block font-bold text-xl">Baax</span>
           </Link>
         </div>
         

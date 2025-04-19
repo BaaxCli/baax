@@ -8,7 +8,7 @@ const HeroSection: React.FC = () => {
       <div className="grid gap-8 md:grid-cols-2 items-center">
         <div>
           <div className="mb-6 inline-block rounded-full bg-baax-100 px-3 py-1 text-sm text-baax-800 dark:bg-baax-800/20 dark:text-baax-200">
-            v1.0.2 - Beta Release
+            v1.1.0 - Beta Release
           </div>
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight lg:text-5xl">
             The Next Generation Backend Blueprint Builder
@@ -32,12 +32,13 @@ const HeroSection: React.FC = () => {
               <span className="comment"># Install the CLI</span>{"\n"}
               <span className="function">npm</span> <span className="keyword">install</span> -g baax{"\n\n"}
               <span className="comment"># Create a new project</span>{"\n"}
-              <span className="function">npx</span> baax create my-app{"\n\n"}
+              <span className="function">npx</span> create-baax{"\n\n"}
               <span className="comment"># Follow the interactive prompts</span>{"\n"}
-              <span className="variable">? Select a framework:</span> React{"\n"}
+              <span className="variable">? Enter your project name: </span> my-project{"\n"}
+              <span className="variable">? Select Backend framework:</span> Express{"\n"}
               <span className="variable">? Select a database:</span> MongoDB{"\n"}
-              <span className="variable">? Include TypeScript?</span> Yes{"\n"}
-              <span className="variable">? Setup testing?</span> Yes{"\n\n"}
+              <span className="variable">? Do you want to setup Docker?</span> Yes{"\n"}
+              <span className="variable">? Do you want to initialize a Git repository?</span> Yes{"\n\n"}
               <span className="comment"># Project created successfully!</span>
             </code></pre>
           </div>
