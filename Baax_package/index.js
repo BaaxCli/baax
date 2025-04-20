@@ -59,23 +59,25 @@ async function askQuestions() {
     return answers;
 }
 
-async function createProject({ projectName, framework, database ,modules, docker, git }) {
+async function createProject({ projectName, framework, database, modules, docker, git }) {
     const spinner = ora('Setting up your project...').start();
 
     try {
         fs.mkdirSync(projectName);
         process.chdir(projectName);
 
-        execSync('npm init -y', { stdio: 'ignore' });
+
 
         if (framework === 'Express.js') {
+            execSync('npm init -y', { stdio: 'ignore' });
             execSync('npm install express jsonwebtoken bcryptjs cors nodemon', { stdio: 'ignore' });
             const moduleList = modules.split(',').map((module) => module.trim());
-            setupExpressProject(projectName,moduleList)
+            setupExpressProject(projectName, moduleList)
         } else if (framework === 'NestJS') {
             execSync('npm install -g @nestjs/cli', { stdio: 'ignore' });
             execSync('nest new . --skip-git', { stdio: 'inherit' });
         } else if (framework === 'Fastify') {
+            execSync('npm init -y', { stdio: 'ignore' });
             execSync('npm install fastify', { stdio: 'ignore' });
         }
 
@@ -88,7 +90,7 @@ async function createProject({ projectName, framework, database ,modules, docker
         }
 
 
-        if (docker) {   
+        if (docker) {
             fs.writeFileSync('Dockerfile', `FROM node:14\nWORKDIR /usr/src/app\nCOPY package*.json ./\nRUN npm install\nCOPY . .\nEXPOSE 3000\nCMD ["node", "src/app.js"]`);
             fs.writeFileSync('.dockerignore', 'node_modules\nnpm-debug.log');
         }
