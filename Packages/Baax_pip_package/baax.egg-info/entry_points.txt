@@ -1,0 +1,2 @@
+[console_scripts]
+baax = baax.cli:main
