@@ -14,8 +14,7 @@ const HeroSection: React.FC = () => {
             The Next Generation Backend Blueprint Builder
           </h1>
           <p className="mb-8 text-xl text-muted-foreground">
-            A powerful CLI tool that provides boilerplate Code for Backends . Select frameworks, databases,
-            and tools to generate your project instantly.
+           Baax is a blazing fast Backend build tool powering the next generation of web applications.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button size="lg" className="gap-2">
