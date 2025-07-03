@@ -10,7 +10,7 @@
   <a href="https://npmjs.com/package/baax"><img src="https://img.shields.io/npm/v/baax.svg" alt="npm version"></a>
   <a href="https://nodejs.org/en/"><img src="https://img.shields.io/node/v/baax.svg" alt="node compatibility"></a>
   <a href="https://discord.com/invite/Keku7ThKuP"><img src="https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord" alt="discord chat"></a>
-  <a href="https://gssoc.girlscript.tech/"><img src="https://img.shields.io/badge/GSSoC-2024-orange?style=flat" alt="GirlScript Summer of Code"></a>
+ 
 </p>
 
 <br/>
@@ -22,16 +22,6 @@
 **Baax** (a.k.a. **Backend Accelerator**) is a blazing fast Backend build tool powering the next generation of web applications.
 Pick your framework, pick your database — and voilà, your project skeleton is ready!
 
-## 🌟 Participating in GirlScript Summer of Code 2024
-
-We're excited to announce that Baax is participating in [GirlScript Summer of Code 2024](https://gssoc.girlscript.tech/)! 
-
-### For Contributors
-- Check out our [good first issues](https://github.com/neelamnagarajgithub/baax/labels/good%20first%20issue)
-- See the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines
-- Join our [Discord](https://discord.com/invite/Keku7ThKuP) to connect with mentors and other contributors
-
----
 
 ## ✨ Features
 
