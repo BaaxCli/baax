@@ -1,20 +1,15 @@
 #!/usr/bin/env node
 
-import inquirer from 'inquirer';
-import chalk from 'chalk';
-import figlet from 'figlet';
-import gradient from 'gradient-string';
-import ora from 'ora';
-import { execSync } from 'child_process';
+import path from 'path';
 import fs from 'fs';
+import chalk from 'chalk';
+import inquirer from 'inquirer';
+import ora from 'ora';
 import { setupExpressProject } from './Express/index.js';
+import { setupFastifyProject } from './Fastify/index.js';
 
 async function welcome() {
-    console.log(
-        gradient.pastel(
-            figlet.textSync('BAAX', { horizontalLayout: 'full' })
-        )
-    );
+    console.log(chalk.blueBright.bold('\n Welcome to Baax - Backend Accelerator!\n'));
 }
 
 async function askQuestions() {
@@ -22,86 +17,120 @@ async function askQuestions() {
         {
             type: 'input',
             name: 'projectName',
-            message: 'Enter your project name:',
+            message: 'Project name:',
             default: 'my-backend-app',
+            validate: (input) => {
+                if (/^[a-z0-9-_]+$/.test(input)) return true;
+                return 'Project name must contain only lowercase letters, numbers, hyphens, and underscores';
+            }
         },
         {
             type: 'list',
             name: 'framework',
-            message: 'Select backend framework:',
-            choices: ['Express.js', 'NestJS', 'Fastify'],
+            message: 'Choose your backend framework:',
+            choices: [
+                { name: ' Express.js', value: 'express' },
+                { name: ' Fastify', value: 'fastify' },
+                { name: ' NestJS (Coming Soon)', value: 'nestjs', disabled: true }
+            ]
         },
         {
             type: 'list',
             name: 'database',
-            message: 'Select database:',
-            choices: ['MongoDB', 'PostgreSQL', 'MySQL'],
-        },
-        {
-            type: 'confirm',
-            name: 'docker',
-            message: 'Do you want to set up Docker?',
-            default: false,
-        },
-        {
-            type: 'confirm',
-            name: 'git',
-            message: 'Do you want to initialize a Git repository?',
-            default: true,
+            message: 'Choose your database:',
+            choices: [
+                { name: 'MongoDB', value: 'mongodb' },
+                { name: 'PostgreSQL (Coming Soon)', value: 'postgresql', disabled: true },
+                { name: 'MySQL (Coming Soon)', value: 'mysql', disabled: true }
+            ]
         },
         {
             type: 'input',
             name: 'modules',
             message: 'Enter module names (comma-separated):',
-            default: 'user,auth',
+            default: 'user, auth',
+            validate: (input) => {
+                if (Array.isArray(input)) {
+                    if (input.length === 0) {
+                        return 'Please enter at least one module name';
+                    }
+                    return true;
+                }
+               if (!input.trim()) {
+                    return 'Please enter at least one module name';
+                }
+                return true;
+            },
+            filter: (input) => {
+                return input
+                    .split(',')
+                    .map(module => module.trim())
+                    .filter(module => module.length > 0)
+                    .map(module => module.toLowerCase());
+            }
         },
+        {
+            type: 'confirm',
+            name: 'includeSwagger',
+            message: 'Include Swagger/OpenAPI documentation?',
+            default: true
+        },
+        {
+            type: 'confirm',
+            name: 'includePostmanCollection',
+            message: 'Generate Postman collection for API testing?',
+            default: true
+        }
     ]);
+
+    // Display the processed modules for confirmation
+    console.log(chalk.gray(`\nModules to be created: ${answers.modules.join(', ')}`));
+    
     return answers;
 }
 
-async function createProject({ projectName, framework, database, modules, docker, git }) {
+async function createProject({ projectName, framework, database, modules, includeSwagger, includePostmanCollection }) {
     const spinner = ora('Setting up your project...').start();
 
     try {
-        fs.mkdirSync(projectName);
-        process.chdir(projectName);
+        const projectPath = path.join(process.cwd(), projectName);
 
-
-
-        if (framework === 'Express.js') {
-            execSync('npm init -y', { stdio: 'ignore' });
-            execSync('npm install express jsonwebtoken bcryptjs cors nodemon', { stdio: 'ignore' });
-            const moduleList = modules.split(',').map((module) => module.trim());
-            setupExpressProject(projectName, moduleList)
-        } else if (framework === 'NestJS') {
-            execSync('npm install -g @nestjs/cli', { stdio: 'ignore' });
-            execSync('nest new . --skip-git', { stdio: 'inherit' });
-        } else if (framework === 'Fastify') {
-            execSync('npm init -y', { stdio: 'ignore' });
-            execSync('npm install fastify', { stdio: 'ignore' });
+        if (fs.existsSync(projectPath)) {
+            spinner.fail();
+            console.log(chalk.red(`\n❌ Directory ${projectName} already exists!`));
+            process.exit(1);
         }
 
-        if (database === 'MongoDB') {
-            execSync('npm install mongoose', { stdio: 'ignore' });
-        } else if (database === 'PostgreSQL') {
-            execSync('npm install pg', { stdio: 'ignore' });
-        } else if (database === 'MySQL') {
-            execSync('npm install mysql2', { stdio: 'ignore' });
-        }
+        fs.mkdirSync(projectPath);
+        process.chdir(projectPath);
 
-
-        if (docker) {
-            fs.writeFileSync('Dockerfile', `FROM node:14\nWORKDIR /usr/src/app\nCOPY package*.json ./\nRUN npm install\nCOPY . .\nEXPOSE 3000\nCMD ["node", "src/app.js"]`);
-            fs.writeFileSync('.dockerignore', 'node_modules\nnpm-debug.log');
-        }
-
-        if (git) {
-            execSync('git init', { stdio: 'ignore' });
-            fs.writeFileSync('.gitignore', 'node_modules/\n.env\n');
+        if (framework === 'express') {
+            setupExpressProject(projectName, modules, { includeSwagger, includePostmanCollection });
+        } else if (framework === 'fastify') {
+            setupFastifyProject(projectName, modules, { includeSwagger, includePostmanCollection });
+        } else {
+            spinner.fail();
+            console.log(chalk.red('Framework not yet supported'));
+            process.exit(1);
         }
 
         spinner.succeed('Project setup complete!');
         console.log(chalk.greenBright('\nYour backend project is ready! 🚀'));
+        console.log(chalk.yellow('\nNext steps:'));
+        console.log(chalk.white(`  cd ${projectName}`));
+        console.log(chalk.white('  npm install'));
+        console.log(chalk.white('  npm run dev'));
+        
+        if (includeSwagger) {
+            console.log(chalk.cyan(`  📚 API Documentation: http://localhost:3000/docs`));
+        }
+        
+        if (includePostmanCollection) {
+            console.log(chalk.cyan(`  📮 Import postman-collection.json into Postman for testing`));
+        }
+        
+        console.log(chalk.gray(`\nCreated modules: ${modules.join(', ')}`));
+        console.log(chalk.gray('\nHappy coding! 🚀\n'));
     } catch (error) {
         spinner.fail('Something went wrong! ❌');
         console.error(error);
@@ -114,5 +143,5 @@ async function main() {
     await createProject(answers);
 }
 
-main();
+main().catch(console.error);
 

@@ -1,54 +1,58 @@
 import fs from 'fs';
 import chalk from 'chalk';
+import { createCoreFiles } from './templates/core.js';
+import { createDockerFiles } from './templates/docker.js';
+import { createConfigFiles } from './templates/config.js';
+import { createMiddlewareFiles } from './templates/middleware.js';
+import { createDocumentationFiles } from './templates/documentation.js';
+import { createModuleFiles } from './templates/modules.js';
 
-export function setupExpressProject(projectName, modules) {
+export function setupExpressProject(projectName, modules, options = {}) {
+    const { includeSwagger = true, includePostmanCollection = true } = options;
+    
     console.log(chalk.blueBright(`\nCreating project structure for ${projectName}...\n`));
 
-    // Create folder structure
-    const folders = ['src', 'src/config', 'src/controllers', 'src/middleware', 'src/models', 'src/routes'];
+    // Create all necessary folders first
+    const folders = [
+        'src', 
+        'src/config', 
+        'src/controllers', 
+        'src/middleware', 
+        'src/models', 
+        'src/routes',
+        'src/utils',
+        'src/services',
+        'docs',
+        'docker',
+        'docker/mongo-init',  // Create this subdirectory
+        'tests',
+        'logs'
+    ];
+    
     folders.forEach((folder) => {
-        fs.mkdirSync(folder);
+        fs.mkdirSync(folder, { recursive: true });
         console.log(chalk.green(`Created folder: ${folder}`));
     });
 
-    // Create default files
-    const files = [
-        { path: 'src/app.js', content: `const express = require('express');\nconst app = express();\n\napp.use(express.json());\n\nmodule.exports = app;` },
-        { path: 'src/routes/index.js', content: `const express = require('express');\nconst router = express.Router();\n\n// Define your routes here\n\nmodule.exports = router;` },
-        { path: 'src/middleware/index.js', content: `// Add your middleware here` },
-        { path: 'src/config/index.js', content: `// Add your configuration here` },
-        { path: '.gitignore', content: 'node_modules/\n.env\n' },
-        { path: 'README.md', content: `# ${projectName}\n\n## Description\n\n## Installation\n\n## Usage\n\n## License\n` },
-        { path: '.env', content: `PORT=3000\nDATABASE_URL=your-database-url` },
-    ];
-
-    files.forEach(({ path, content }) => {
-        fs.writeFileSync(path, content);
-        console.log(chalk.green(`Created file: ${path}`));
-    });
-
+    // Create core application files
+    createCoreFiles(projectName, modules, includeSwagger);
+    
+    // Create Docker configuration
+    createDockerFiles(projectName, modules);
+    
+    // Create configuration files
+    createConfigFiles(projectName, modules);
+    
+    // Create middleware files
+    createMiddlewareFiles();
+    
+    // Create documentation files
+    if (includeSwagger || includePostmanCollection) {
+        createDocumentationFiles(projectName, modules, { includeSwagger, includePostmanCollection });
+    }
+    
     // Create module-specific files
-    modules.forEach((module) => {
-        const moduleFiles = [
-            {
-                path: `src/controllers/${module}.controller.js`,
-                content: `// Controller for ${module}\n\nexports.get${module} = (req, res) => {\n    res.send('${module} data');\n};\n`,
-            },
-            {
-                path: `src/models/${module}.model.js`,
-                content: `// Model for ${module}\n\nconst mongoose = require('mongoose');\n\nconst ${module}Schema = new mongoose.Schema({\n    // Define schema here\n});\n\nmodule.exports = mongoose.model('${module}', ${module}Schema);\n`,
-            },
-            {
-                path: `src/routes/${module}.routes.js`,
-                content: `// Routes for ${module}\n\nconst express = require('express');\nconst router = express.Router();\nconst { get${module} } = require('../controllers/${module}.controller');\n\nrouter.get('/', get${module});\n\nmodule.exports = router;\n`,
-            },
-        ];
+    createModuleFiles(modules);
 
-        moduleFiles.forEach(({ path, content }) => {
-            fs.writeFileSync(path, content);
-            console.log(chalk.green(`Created file: ${path}`));
-        });
-    });
-
-    console.log(chalk.blueBright(`\nProject structure for ${projectName} created successfully!\n`));
+    console.log(chalk.blueBright(`\n Express project structure for ${projectName} created successfully!\n`));
 }

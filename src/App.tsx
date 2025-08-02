@@ -9,6 +9,8 @@ import Documentation from "./pages/Documentation";
 import Examples from "./pages/Examples";
 import Community from "./pages/Community";
 import NotFound from "./pages/NotFound";
+import PythonDocs from './pages/PythonDocs'
+import FrameworkComparison from './pages/FrameworkComparison'
 import { ThemeProvider } from "next-themes";
 
 const queryClient = new QueryClient();
@@ -22,7 +24,9 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/docs" element={<Documentation />} />
+            <Route path="/docs/javascript" element={<Documentation />} />
+            <Route path="/docs/python" element={<PythonDocs />}/>
+            <Route path="/docs/comparison" element={<FrameworkComparison />}/>
             <Route path="/examples" element={<Examples />} />
             <Route path="/community" element={<Community />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
