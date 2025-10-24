@@ -61,15 +61,15 @@ create-baax
 Follow the prompts and your backend app will be ready to hack!
 
 ## 🔗 Links
-NPM Package: [baax npm](https://www.npmjs.com/package/baax)
-PIP Package: [baax pip](https://pypi.org/project/baax/)
-GitHub Repository: - [GitHub](https://github.com/neelamnagarajgithub/baax)
+- NPM Package: [baax npm](https://www.npmjs.com/package/baax)
+- PIP Package: [baax pip](https://pypi.org/project/baax/)
+- GitHub Repository: - [GitHub](https://github.com/neelamnagarajgithub/baax)
 
 ### Featured Contributors
-[Nagaraj Neelam](https://github.com/neelamnagarajgithub)
-[Shatakshi Palli](https://github.com/ShatakshiPalli)
-[SpaciousCoder78](https://github.com/SpaciousCoder78)
-[Syed Adil Abraar](https://github.com/adilsyed003)
+- [Nagaraj Neelam](https://github.com/neelamnagarajgithub)
+- [Shatakshi Palli](https://github.com/ShatakshiPalli)
+- [SpaciousCoder78](https://github.com/SpaciousCoder78)
+- [Syed Adil Abraar](https://github.com/adilsyed003)
 
 ## 🛠️ Contributing
 Wanna make this even crazier? Feel free to open issues, create PRs, or suggest new features!
