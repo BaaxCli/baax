@@ -32,14 +32,25 @@ Pick your framework, pick your database — and voilà, your project skeleton is
 
 ## 📦 Installation
 
+### Installation npm Packages:
 ```bash
 npm install -g baax
 ```
 
+### Installation PIP Package:
+```bash
+pip install baax
+```
+
 ## ⚡ Usage
 
+NPM:
 ```bash
 npx create-baax
+```
+PIP:
+```bash
+baax create
 ```
 
 or if installed globally:
@@ -51,8 +62,14 @@ Follow the prompts and your backend app will be ready to hack!
 
 ## 🔗 Links
 NPM Package: [baax npm](https://www.npmjs.com/package/baax)
-
+PIP Package: [baax pip](https://pypi.org/project/baax/)
 GitHub Repository: - [GitHub](https://github.com/neelamnagarajgithub/baax)
+
+### Featured Contributors
+[Nagaraj Neelam](https://github.com/neelamnagarajgithub)
+[Shatakshi Palli](https://github.com/ShatakshiPalli)
+[SpaciousCoder78](https://github.com/SpaciousCoder78)
+[Syed Adil Abraar](https://github.com/adilsyed003)
 
 ## 🛠️ Contributing
 Wanna make this even crazier? Feel free to open issues, create PRs, or suggest new features!
