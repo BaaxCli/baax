@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://npmjs.com/package/baax" target="_blank" rel="noopener noreferrer">
-    <img width="180" src="https://baax.nagarajneelam.me/logo.png" alt="Baax Logo">
+    <img width="180" src="https://baax.nagarajneelam.in/logo.png" alt="Baax Logo">
   </a>
 </p>
 
@@ -259,7 +259,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed history of changes.
 
 ## 🆘 Support
 
-- 📖 **Documentation**: [https://baax.nagarajneelam.me](https://baax.nagarajneelam.me)
+- 📖 **Documentation**: [https://baax.nagarajneelam.in](https://baax.nagarajneelam.in)
 - 💬 **Discord**: [Join our community](https://discord.com/invite/Keku7ThKuP)
 - 🐛 **Issues**: [GitHub Issues](https://github.com/baaxjs/baax/issues)
 - 📧 **Email**: support@baax.dev

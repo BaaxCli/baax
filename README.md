@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://npmjs.com/package/baax" target="_blank" rel="noopener noreferrer">
-    <img width="180" src="https://baax.nagarajneelam.me/logo.png" alt="baax logo">
+    <img width="180" src="https://baax.nagarajneelam.in/logo.png" alt="baax logo">
   </a>
 </p>
 
@@ -65,7 +65,7 @@ Follow the prompts and your backend app will be ready to hack!
 - PIP Package: [baax pip](https://pypi.org/project/baax/)
 - GitHub Repository: - [GitHub](https://github.com/neelamnagarajgithub/baax)
 
-### Featured Contributors
+## Featured Contributors
 - [Nagaraj Neelam](https://github.com/neelamnagarajgithub)
 - [Shatakshi Palli](https://github.com/ShatakshiPalli)
 - [SpaciousCoder78](https://github.com/SpaciousCoder78)
