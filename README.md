@@ -17,7 +17,6 @@
 
 # Baax 
 
-> Spin up your backend like magic in seconds!
 
 **Baax** (a.k.a. **Backend Accelerator**) is a blazing fast Backend build tool powering the next generation of web applications.
 Pick your framework, pick your database — and voilà, your project skeleton is ready!
