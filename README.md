@@ -72,7 +72,7 @@ Follow the prompts and your backend app will be ready to hack!
 
 ## 🛠️ Contributing
 Wanna make this even crazier? Feel free to open issues, create PRs, or suggest new features!
-Let's build the backend world, one line at a time. 🌍❤️
+Let's build the backend world, one line at a time. 
 
 ## 🪐 License
 This project is licensed under the MIT License.
